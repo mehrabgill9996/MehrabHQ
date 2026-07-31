@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Calendar, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn } from "@/components/FadeIn";
 import { siteConfig } from "@/lib/content";
@@ -40,16 +40,26 @@ export default function ContactPage() {
             </li>
             <li>
               <a
-                href={siteConfig.bookCallUrl}
+                href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 transition-colors hover:text-accent"
               >
                 <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
-                  <Calendar size={18} aria-hidden />
+                  <MessageCircle size={18} aria-hidden />
                 </span>
-                Book a call
-                {/* TODO: replace Calendly URL in lib/content.ts */}
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a
+                href={siteConfig.phoneTel}
+                className="inline-flex items-center gap-3 transition-colors hover:text-accent"
+              >
+                <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
+                  <Phone size={18} aria-hidden />
+                </span>
+                Call Now — {siteConfig.phoneDisplay}
               </a>
             </li>
             <li className="inline-flex items-center gap-3">

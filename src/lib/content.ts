@@ -3,9 +3,12 @@ export const siteConfig = {
   tagline: "Custom websites for small businesses that mean business.",
   owner: "Mehrab",
   location: "Ontario, Canada",
-  email: "hello@mehrabhq.com",
+  email: "support@mehrabhq.com",
+  phone: "3063165228",
+  phoneDisplay: "(306) 316-5228",
+  phoneTel: "tel:+13063165228",
+  whatsappUrl: "https://wa.me/13063165228",
   linkedIn: "https://linkedin.com/in/mehrab", // TODO: replace with real profile URL
-  bookCallUrl: "https://calendly.com/mehrabhq", // TODO: replace with real booking link
   acceptingProjects: true,
 };
 
