@@ -17,31 +17,43 @@ export function FeaturedWork() {
 
         <div className="grid gap-8 lg:grid-cols-2">
           {featuredProjects.map((project, index) => (
-            <FadeIn key={`${project.title}-${project.subtitle}`} delay={index * 0.08}>
+            <FadeIn key={project.title} delay={index * 0.08}>
               <article
                 data-sticky-hide
-                className="card-surface group overflow-hidden transition-shadow duration-300 hover:shadow-lift"
+                className="card-surface flex h-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-lift"
               >
                 <div className="border-b border-ink/10 bg-sand-warm/80 px-3 py-2.5">
-                  <div className="mb-2 flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" aria-hidden />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" aria-hidden />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" aria-hidden />
                     <span className="ml-2 truncate rounded-md bg-white px-2.5 py-1 text-[11px] text-ink-muted">
-                      {project.title} · {project.subtitle}
+                      {project.title}
                     </span>
                   </div>
                 </div>
 
-                <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                    priority={index === 0}
-                  />
+                <div className="flex flex-1 flex-col gap-3 bg-sand p-3">
+                  {project.images.map((image, imageIndex) => (
+                    <figure
+                      key={image.src}
+                      className="overflow-hidden rounded-xl border border-ink/8 bg-white"
+                    >
+                      <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[2/1]">
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover object-top"
+                          priority={index === 0 && imageIndex === 0}
+                        />
+                      </div>
+                      <figcaption className="border-t border-ink/8 px-3 py-2 text-center text-xs font-medium text-ink-muted">
+                        {image.label}
+                      </figcaption>
+                    </figure>
+                  ))}
                 </div>
 
                 <div className="border-t border-ink/10 p-5">
@@ -50,10 +62,6 @@ export function FeaturedWork() {
                   </p>
                   <h3 className="mt-1.5 text-lg font-semibold text-ink">
                     {project.title}
-                    <span className="font-normal text-ink-muted">
-                      {" "}
-                      — {project.subtitle}
-                    </span>
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                     {project.description}

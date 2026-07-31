@@ -160,48 +160,49 @@ export const pricingNote =
 export const featuredProjects = [
   {
     title: "Kingpin Auto Sales",
-    subtitle: "Homepage",
     category: "Dealership Website",
     description:
-      "A premium dark hero, trust signals, and clear CTAs for a Regina pre-owned dealership.",
-    image: "/images/projects/kingpin-home.png",
-    imageAlt: "Kingpin Auto Sales homepage screenshot",
-  },
-  {
-    title: "Kingpin Auto Sales",
-    subtitle: "Inventory",
-    category: "Dealership Website",
-    description:
-      "Responsive vehicle listings with pricing cards, filters-ready layout, and polished brand chrome.",
-    image: "/images/projects/kingpin-inventory.png",
-    imageAlt: "Kingpin Auto Sales inventory page screenshot",
-  },
-  {
-    title: "Tiles With Gill",
-    subtitle: "Homepage",
-    category: "Trade Business Website",
-    description:
-      "Clean, conversion-focused landing page for a Brampton tiling contractor — strong headline and dual CTAs.",
-    image: "/images/projects/tiles-home.png",
-    imageAlt: "Tiles With Gill homepage screenshot",
+      "A premium dealership site with a dark hero, trust signals, and a polished inventory experience for a Regina pre-owned dealer.",
+    images: [
+      {
+        src: "/images/projects/kingpin-home.png",
+        alt: "Kingpin Auto Sales homepage",
+        label: "Homepage",
+      },
+      {
+        src: "/images/projects/kingpin-inventory.png",
+        alt: "Kingpin Auto Sales inventory page",
+        label: "Inventory",
+      },
+      {
+        src: "/images/projects/kingpin-recently-sold.png",
+        alt: "Kingpin Auto Sales recently sold page",
+        label: "Recently Sold",
+      },
+    ],
   },
   {
     title: "Tiles With Gill",
-    subtitle: "Contact & Map",
     category: "Trade Business Website",
     description:
-      "Business hours, quote CTA, and an embedded service-area map for Brampton and the GTA.",
-    image: "/images/projects/tiles-contact.png",
-    imageAlt: "Tiles With Gill contact and map section screenshot",
-  },
-  {
-    title: "Tiles With Gill",
-    subtitle: "Why Choose Us",
-    category: "Trade Business Website",
-    description:
-      "Dark feature cards and service-area pills that build trust with local homeowners.",
-    image: "/images/projects/tiles-why-us.png",
-    imageAlt: "Tiles With Gill why choose us section screenshot",
+      "A clean contractor site for Brampton & the GTA — strong quote CTAs, service-area map, and a trust-building why-us section.",
+    images: [
+      {
+        src: "/images/projects/tiles-home.png",
+        alt: "Tiles With Gill homepage",
+        label: "Homepage",
+      },
+      {
+        src: "/images/projects/tiles-contact.png",
+        alt: "Tiles With Gill contact and map section",
+        label: "Contact & Map",
+      },
+      {
+        src: "/images/projects/tiles-why-us.png",
+        alt: "Tiles With Gill why choose us section",
+        label: "Why Choose Us",
+      },
+    ],
   },
 ] as const;
 
