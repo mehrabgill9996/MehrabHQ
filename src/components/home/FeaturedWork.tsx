@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import { SectionHeading } from "@/components/SectionHeading";
 import { featuredProjects } from "@/lib/content";
@@ -10,32 +11,53 @@ export function FeaturedWork() {
           <SectionHeading
             eyebrow="Recent Work"
             title="Featured Projects"
-            description="A few spots for real project screenshots — swap these placeholders as soon as your portfolio assets are ready."
+            description="Real builds for local businesses — dealerships, trades, and more."
           />
         </FadeIn>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 lg:grid-cols-2">
           {featuredProjects.map((project, index) => (
-            <FadeIn key={project.title} delay={index * 0.06}>
-              {/* TODO: replace placeholder frame with a next/image screenshot */}
+            <FadeIn key={`${project.title}-${project.subtitle}`} delay={index * 0.08}>
               <article
                 data-sticky-hide
-                className="card-surface overflow-hidden"
+                className="card-surface group overflow-hidden transition-shadow duration-300 hover:shadow-lift"
               >
-                <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-sand-warm via-white to-[#DBEAFE] px-4 text-center">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#2563EB]">
-                      {project.category}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-ink-muted">
-                      {project.note}
-                    </p>
+                <div className="border-b border-ink/10 bg-sand-warm/80 px-3 py-2.5">
+                  <div className="mb-2 flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" aria-hidden />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" aria-hidden />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" aria-hidden />
+                    <span className="ml-2 truncate rounded-md bg-white px-2.5 py-1 text-[11px] text-ink-muted">
+                      {project.title} · {project.subtitle}
+                    </span>
                   </div>
                 </div>
-                <div className="border-t border-ink/10 px-4 py-3">
-                  <h3 className="text-sm font-semibold text-ink">
+
+                <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    priority={index === 0}
+                  />
+                </div>
+
+                <div className="border-t border-ink/10 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#2563EB]">
+                    {project.category}
+                  </p>
+                  <h3 className="mt-1.5 text-lg font-semibold text-ink">
                     {project.title}
+                    <span className="font-normal text-ink-muted">
+                      {" "}
+                      — {project.subtitle}
+                    </span>
                   </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {project.description}
+                  </p>
                 </div>
               </article>
             </FadeIn>

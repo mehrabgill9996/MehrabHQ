@@ -15,9 +15,9 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Services />
+      <FeaturedWork />
       <Benefits />
       <Process />
-      <FeaturedWork />
       <Pricing />
       <Testimonials />
       <FAQ />
