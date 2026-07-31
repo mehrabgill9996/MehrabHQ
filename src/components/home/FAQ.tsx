@@ -11,7 +11,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="scroll-mt-24 bg-white py-20 lg:py-24">
+    <section id="faq" className="scroll-mt-24 bg-white py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page max-w-3xl">
         <FadeIn>
           <SectionHeading
@@ -26,7 +26,10 @@ export function FAQ() {
             const isOpen = openIndex === index;
             return (
               <FadeIn key={faq.question} delay={index * 0.04}>
-                <div className="overflow-hidden rounded-2xl border border-ink/8 bg-sand">
+                <div
+                  data-sticky-hide
+                  className="overflow-hidden rounded-2xl border border-ink/8 bg-sand"
+                >
                   <button
                     type="button"
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"

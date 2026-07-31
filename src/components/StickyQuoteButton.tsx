@@ -4,35 +4,61 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 
+/** Approximate floating CTA footprint in the bottom-right corner */
+const CTA = { width: 200, height: 56, bottom: 24, right: 24 };
+
+function isOverlappingCta(el: Element) {
+  const rect = el.getBoundingClientRect();
+  const viewW = window.innerWidth;
+  const viewH = window.innerHeight;
+
+  const ctaLeft = viewW - CTA.right - CTA.width;
+  const ctaRight = viewW - CTA.right;
+  const ctaTop = viewH - CTA.bottom - CTA.height;
+  const ctaBottom = viewH - CTA.bottom;
+
+  // Expand hit area slightly so text near the button also counts
+  const pad = 12;
+  const left = ctaLeft - pad;
+  const right = ctaRight + pad;
+  const top = ctaTop - pad;
+  const bottom = ctaBottom + pad;
+
+  return !(
+    rect.right < left ||
+    rect.left > right ||
+    rect.bottom < top ||
+    rect.top > bottom
+  );
+}
+
 export function StickyQuoteButton() {
   const [pastHero, setPastHero] = useState(false);
   const [overCards, setOverCards] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setPastHero(window.scrollY > 480);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const update = () => {
+      setPastHero(window.scrollY > 420);
 
-  useEffect(() => {
-    const zones = document.querySelectorAll("[data-sticky-hide]");
-    if (!zones.length) return;
+      const zones = document.querySelectorAll("[data-sticky-hide]");
+      let overlapping = false;
+      zones.forEach((zone) => {
+        if (isOverlappingCta(zone)) overlapping = true;
+      });
+      setOverCards(overlapping);
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        setOverCards(entries.some((entry) => entry.isIntersecting));
-      },
-      {
-        // Hide when a card zone overlaps the floating CTA area (bottom-right)
-        root: null,
-        rootMargin: "0px 0px -72px 0px",
-        threshold: 0.12,
-      }
-    );
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    // Recheck after layout/fonts settle
+    const t = window.setTimeout(update, 300);
 
-    zones.forEach((zone) => observer.observe(zone));
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      window.clearTimeout(t);
+    };
   }, []);
 
   const visible = pastHero && !overCards;
@@ -45,7 +71,7 @@ export function StickyQuoteButton() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.2 }}
         >
           <Button href="/contact" size="md" className="shadow-lift">
             Get a Free Quote

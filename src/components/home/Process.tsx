@@ -4,7 +4,7 @@ import { processSteps } from "@/lib/content";
 
 export function Process() {
   return (
-    <section id="process" className="scroll-mt-24 py-20 pb-28 lg:py-24 lg:pb-32">
+    <section id="process" className="scroll-mt-24 py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page">
         <FadeIn>
           <SectionHeading
@@ -14,17 +14,14 @@ export function Process() {
           />
         </FadeIn>
 
-        <ol
-          data-sticky-hide
-          className="relative grid gap-6 lg:grid-cols-4"
-        >
+        <ol className="relative grid gap-6 lg:grid-cols-4">
           <div
             className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-ink/10 lg:block"
             aria-hidden
           />
           {processSteps.map((step, index) => (
             <FadeIn key={step.step} delay={index * 0.08}>
-              <li className="card-surface relative p-6">
+              <li data-sticky-hide className="card-surface relative p-6 pb-8">
                 <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">
                   {step.step}
                 </span>

@@ -1,15 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { type ReactNode } from "react";
+import { type HTMLAttributes, type ReactNode } from "react";
 
 type CardProps = {
   children: ReactNode;
   className?: string;
   hover?: boolean;
-};
+} & Pick<HTMLAttributes<HTMLDivElement>, "data-sticky-hide">;
 
-export function Card({ children, className = "", hover = true }: CardProps) {
+export function Card({
+  children,
+  className = "",
+  hover = true,
+  ...rest
+}: CardProps) {
   return (
     <motion.div
       className={`card-surface p-6 ${className}`}
@@ -19,6 +24,7 @@ export function Card({ children, className = "", hover = true }: CardProps) {
           : undefined
       }
       transition={{ duration: 0.25 }}
+      {...rest}
     >
       {children}
     </motion.div>

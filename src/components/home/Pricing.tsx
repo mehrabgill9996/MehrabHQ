@@ -6,7 +6,7 @@ import { pricingNote, pricingTiers } from "@/lib/content";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="scroll-mt-24 bg-white py-20 pb-28 lg:py-24 lg:pb-32">
+    <section id="pricing" className="scroll-mt-24 bg-white py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page">
         <FadeIn>
           <SectionHeading
@@ -16,13 +16,14 @@ export function Pricing() {
           />
         </FadeIn>
 
-        <div data-sticky-hide className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {pricingTiers.map((tier, index) => {
             const isPopular = "highlighted" in tier && tier.highlighted;
             return (
               <FadeIn key={tier.name} delay={index * 0.08}>
                 <div
-                  className={`relative flex h-full flex-col rounded-2xl border p-7 shadow-soft ${
+                  data-sticky-hide
+                  className={`relative flex h-full flex-col rounded-2xl border p-7 pb-9 shadow-soft ${
                     isPopular
                       ? "border-[#2563EB] bg-[#DBEAFE]/35 ring-1 ring-[#2563EB]/30"
                       : "border-ink/10 bg-sand"

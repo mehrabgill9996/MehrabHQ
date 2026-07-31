@@ -4,7 +4,7 @@ import { testimonials } from "@/lib/content";
 
 export function Testimonials() {
   return (
-    <section className="py-20 lg:py-24">
+    <section className="py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page">
         <FadeIn>
           <SectionHeading
@@ -28,10 +28,13 @@ export function Testimonials() {
           </div>
         </FadeIn>
 
-        <div data-sticky-hide className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <FadeIn key={item.name} delay={index * 0.08}>
-              <blockquote className="card-surface flex h-full flex-col p-6">
+              <blockquote
+                data-sticky-hide
+                className="card-surface flex h-full flex-col p-6 pb-8"
+              >
                 {item.editable ? (
                   <span className="mb-3 w-fit rounded-md bg-sand-warm px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                     Editable placeholder

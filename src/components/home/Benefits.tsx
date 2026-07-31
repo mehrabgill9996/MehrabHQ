@@ -17,7 +17,7 @@ export function Benefits() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, index) => (
             <FadeIn key={benefit.title} delay={index * 0.06}>
-              <div>
+              <div data-sticky-hide className="pb-4">
                 <p className="mb-3 text-sm font-semibold text-[#2563EB]">
                   0{index + 1}
                 </p>

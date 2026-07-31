@@ -4,7 +4,7 @@ import { featuredProjects } from "@/lib/content";
 
 export function FeaturedWork() {
   return (
-    <section id="work" className="scroll-mt-24 py-20 pb-28 lg:py-24 lg:pb-32">
+    <section id="work" className="scroll-mt-24 py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page">
         <FadeIn>
           <SectionHeading
@@ -14,14 +14,14 @@ export function FeaturedWork() {
           />
         </FadeIn>
 
-        <div
-          data-sticky-hide
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProjects.map((project, index) => (
             <FadeIn key={project.title} delay={index * 0.06}>
               {/* TODO: replace placeholder frame with a next/image screenshot */}
-              <article className="card-surface overflow-hidden">
+              <article
+                data-sticky-hide
+                className="card-surface overflow-hidden"
+              >
                 <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-sand-warm via-white to-[#DBEAFE] px-4 text-center">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-[#2563EB]">

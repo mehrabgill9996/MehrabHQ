@@ -73,7 +73,7 @@ export default function RootLayout({
           <Script src="..." strategy="afterInteractive" />
         */}
         <Navbar />
-        <main>{children}</main>
+        <main className="pb-28 md:pb-32">{children}</main>
         <Footer />
         <StickyQuoteButton />
       </body>
