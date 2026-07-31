@@ -1,19 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { type HTMLAttributes, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 type CardProps = {
   children: ReactNode;
   className?: string;
   hover?: boolean;
-} & Pick<HTMLAttributes<HTMLDivElement>, "data-sticky-hide">;
+  /** Marks the card for floating CTA collision detection */
+  "data-sticky-hide"?: boolean | string;
+};
 
 export function Card({
   children,
   className = "",
   hover = true,
-  ...rest
+  "data-sticky-hide": stickyHide,
 }: CardProps) {
   return (
     <motion.div
@@ -24,7 +26,7 @@ export function Card({
           : undefined
       }
       transition={{ duration: 0.25 }}
-      {...rest}
+      {...(stickyHide !== undefined ? { "data-sticky-hide": stickyHide } : {})}
     >
       {children}
     </motion.div>
