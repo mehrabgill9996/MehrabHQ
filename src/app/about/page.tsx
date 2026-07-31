@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/Button";
 import { FadeIn } from "@/components/FadeIn";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,28 +11,35 @@ export const metadata: Metadata = {
     "Meet Mehrab — the designer and developer behind MehrabHQ, helping Ontario small businesses get modern, conversion-focused websites.",
 };
 
+const MAP_EMBED_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10767442.305948127!2d-95.32040568514148!3d48.786279273955856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b25f5113af%3A0x70f8425629621e09!2sOntario!5e0!3m2!1sen!2sca!4v1785533348376!5m2!1sen!2sca";
+
 export default function AboutPage() {
   return (
     <div className="pb-20">
-      <section className="bg-hero-glow py-16 lg:py-20">
+      <section
+        className="py-16 lg:py-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.16), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(26, 35, 54, 0.08), transparent)",
+        }}
+      >
         <div className="container-page grid items-center gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
           <FadeIn>
-            {/* TODO: replace with real profile photo */}
-            <div
-              className="mx-auto aspect-square w-48 overflow-hidden rounded-3xl bg-gradient-to-br from-accent/30 via-ink/10 to-accent-soft shadow-lift sm:w-56 lg:mx-0 lg:w-full"
-              role="img"
-              aria-label={`${siteConfig.owner} profile photo placeholder`}
-            >
-              <div className="flex h-full w-full items-end justify-center bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.35),transparent_55%)] pb-6">
-                <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-ink-muted">
-                  Photo coming soon
-                </span>
-              </div>
+            <div className="mx-auto aspect-square w-48 overflow-hidden rounded-3xl border border-ink/10 bg-sand-warm shadow-lift sm:w-56 lg:mx-0 lg:w-full">
+              <Image
+                src="/images/mehrab-profile.png"
+                alt={`${siteConfig.owner}, founder of ${siteConfig.name}`}
+                width={480}
+                height={480}
+                className="h-full w-full object-cover"
+                priority
+              />
             </div>
           </FadeIn>
 
           <FadeIn delay={0.08}>
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[#2563EB]">
               About
             </p>
             <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
@@ -57,7 +65,7 @@ export default function AboutPage() {
             />
           </FadeIn>
           <FadeIn delay={0.08}>
-            <div className="rounded-2xl border border-ink/8 bg-white p-7 shadow-soft">
+            <div className="card-surface p-7">
               <h2 className="text-xl font-semibold text-ink">
                 How I work with clients
               </h2>
@@ -83,6 +91,30 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-white py-16">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Based in"
+              title={`Serving small businesses across ${siteConfig.location}`}
+              description="Local enough to understand your market — flexible enough to work with clients wherever you are."
+            />
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <div className="card-surface overflow-hidden">
+              <iframe
+                src={MAP_EMBED_SRC}
+                title={`Map of ${siteConfig.location}`}
+                className="h-[280px] w-full border-0 sm:h-[360px] lg:h-[450px]"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="py-16">
         <div className="container-page">
           <FadeIn>
             <SectionHeading

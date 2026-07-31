@@ -18,7 +18,7 @@ export function Benefits() {
           {benefits.map((benefit, index) => (
             <FadeIn key={benefit.title} delay={index * 0.06}>
               <div>
-                <p className="mb-3 text-sm font-semibold text-accent">
+                <p className="mb-3 text-sm font-semibold text-[#2563EB]">
                   0{index + 1}
                 </p>
                 <h3 className="text-lg font-semibold text-ink">

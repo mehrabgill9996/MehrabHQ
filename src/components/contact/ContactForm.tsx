@@ -241,7 +241,7 @@ export function ContactForm() {
               >
                 <X size={18} />
               </button>
-              <CheckCircle2 className="mx-auto mb-4 text-accent" size={52} aria-hidden />
+              <CheckCircle2 className="mx-auto mb-4 text-[#2563EB]" size={52} aria-hidden />
               <h3
                 id="thank-you-title"
                 className="text-2xl font-semibold tracking-tight text-ink"
@@ -266,7 +266,7 @@ export function ContactForm() {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-ink/10 bg-sand px-4 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-accent focus:bg-white";
+  "w-full rounded-xl border border-ink/10 bg-sand px-4 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted/60 focus:border-[#2563EB] focus:bg-white";
 
 function Field({
   label,
@@ -283,7 +283,7 @@ function Field({
     <div className="flex flex-col gap-1.5">
       <label htmlFor={htmlFor} className="text-sm font-medium text-ink">
         {label}
-        {required ? <span className="text-accent"> *</span> : null}
+        {required ? <span className="text-[#2563EB]"> *</span> : null}
       </label>
       {children}
     </div>

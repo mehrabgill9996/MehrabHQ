@@ -5,14 +5,37 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 
 export function StickyQuoteButton() {
-  const [visible, setVisible] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [overCards, setOverCards] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 480);
+    const onScroll = () => setPastHero(window.scrollY > 480);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const zones = document.querySelectorAll("[data-sticky-hide]");
+    if (!zones.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setOverCards(entries.some((entry) => entry.isIntersecting));
+      },
+      {
+        // Hide when a card zone overlaps the floating CTA area (bottom-right)
+        root: null,
+        rootMargin: "0px 0px -72px 0px",
+        threshold: 0.12,
+      }
+    );
+
+    zones.forEach((zone) => observer.observe(zone));
+    return () => observer.disconnect();
+  }, []);
+
+  const visible = pastHero && !overCards;
 
   return (
     <AnimatePresence>

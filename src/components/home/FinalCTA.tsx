@@ -8,7 +8,11 @@ export function FinalCTA() {
         <FadeIn>
           <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-14 text-center shadow-lift sm:px-12">
             <div
-              className="pointer-events-none absolute inset-0 bg-hero-glow opacity-40"
+              className="pointer-events-none absolute inset-0 opacity-40"
+              style={{
+                backgroundImage:
+                  "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.35), transparent)",
+              }}
               aria-hidden
             />
             <div className="relative">

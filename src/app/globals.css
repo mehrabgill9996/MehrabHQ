@@ -5,7 +5,7 @@
 :root {
   --background: #f7f8fa;
   --foreground: #0b1220;
-  --accent: #0d9488;
+  --accent: #2563eb;
 }
 
 html {
@@ -26,10 +26,14 @@ body {
   .container-page {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
   }
+
+  .card-surface {
+    @apply rounded-2xl border border-ink/10 bg-white shadow-soft;
+  }
 }
 
 /* Focus styles for accessibility */
 :focus-visible {
-  outline: 2px solid #0d9488;
+  outline: 2px solid #2563eb;
   outline-offset: 3px;
 }

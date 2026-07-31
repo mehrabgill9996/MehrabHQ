@@ -15,7 +15,7 @@ export default function ContactPage() {
     <div className="pb-20 pt-12 lg:pt-16">
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
         <FadeIn>
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[#2563EB]">
             Contact
           </p>
           <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
@@ -30,9 +30,9 @@ export default function ContactPage() {
             <li>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="inline-flex items-center gap-3 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-3 transition-colors hover:text-[#2563EB]"
               >
-                <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
+                <span className="inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
                   <Mail size={18} aria-hidden />
                 </span>
                 {siteConfig.email}
@@ -43,9 +43,9 @@ export default function ContactPage() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-3 transition-colors hover:text-[#2563EB]"
               >
-                <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
+                <span className="inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
                   <MessageCircle size={18} aria-hidden />
                 </span>
                 WhatsApp
@@ -54,16 +54,16 @@ export default function ContactPage() {
             <li>
               <a
                 href={siteConfig.phoneTel}
-                className="inline-flex items-center gap-3 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-3 transition-colors hover:text-[#2563EB]"
               >
-                <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
+                <span className="inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
                   <Phone size={18} aria-hidden />
                 </span>
                 Call Now — {siteConfig.phoneDisplay}
               </a>
             </li>
             <li className="inline-flex items-center gap-3">
-              <span className="inline-flex rounded-xl bg-accent-soft p-2.5 text-accent-hover">
+              <span className="inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
                 <MapPin size={18} aria-hidden />
               </span>
               {siteConfig.location}

@@ -12,10 +12,10 @@ type CardProps = {
 export function Card({ children, className = "", hover = true }: CardProps) {
   return (
     <motion.div
-      className={`rounded-2xl border border-ink/8 bg-white p-6 shadow-soft ${className}`}
+      className={`card-surface p-6 ${className}`}
       whileHover={
         hover
-          ? { y: -4, boxShadow: "0 14px 40px rgba(11, 18, 32, 0.10)" }
+          ? { y: -4, boxShadow: "0 12px 36px rgba(11, 18, 32, 0.11)" }
           : undefined
       }
       transition={{ duration: 0.25 }}

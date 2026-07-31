@@ -15,6 +15,7 @@ export const siteConfig = {
 export const navLinks = [
   { href: "/#services", label: "Services" },
   { href: "/#process", label: "Process" },
+  { href: "/#work", label: "Work" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -155,6 +156,29 @@ export const pricingTiers = [
 
 export const pricingNote =
   "Final quote depends on your needs — get a free estimate with no obligation.";
+
+export const featuredProjects = [
+  {
+    title: "Local Business Website",
+    category: "Business Site",
+    note: "Screenshot coming soon",
+  },
+  {
+    title: "Service Landing Page",
+    category: "Landing Page",
+    note: "Screenshot coming soon",
+  },
+  {
+    title: "Online Store",
+    category: "E-Commerce",
+    note: "Screenshot coming soon",
+  },
+  {
+    title: "Site Redesign",
+    category: "Redesign",
+    note: "Screenshot coming soon",
+  },
+] as const;
 
 export const testimonials = [
   {

@@ -1,5 +1,6 @@
 import { Benefits } from "@/components/home/Benefits";
 import { FAQ } from "@/components/home/FAQ";
+import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Hero } from "@/components/home/Hero";
 import { Pricing } from "@/components/home/Pricing";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Services />
       <Benefits />
       <Process />
+      <FeaturedWork />
       <Pricing />
       <Testimonials />
       <FAQ />

@@ -7,7 +7,13 @@ import { siteConfig } from "@/lib/content";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-hero-glow">
+    <section
+      className="relative overflow-hidden"
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.16), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(26, 35, 54, 0.08), transparent)",
+      }}
+    >
       <div
         className="pointer-events-none absolute inset-0 bg-grain opacity-60"
         aria-hidden
@@ -20,9 +26,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-hover"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#2563EB]/20 bg-[#DBEAFE] px-3 py-1 text-xs font-semibold text-[#1D4ED8]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" aria-hidden />
             Currently accepting new projects
           </motion.span>
         ) : null}
@@ -70,7 +76,7 @@ function FloatingShapes() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       <motion.div
-        className="absolute -left-16 top-24 h-40 w-40 rounded-full bg-accent/10 blur-2xl"
+        className="absolute -left-16 top-24 h-40 w-40 rounded-full bg-[#2563EB]/10 blur-2xl"
         animate={{ y: [0, 18, 0], x: [0, 10, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -80,7 +86,7 @@ function FloatingShapes() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-10 right-1/4 h-24 w-24 rounded-3xl bg-accent/15 blur-lg"
+        className="absolute bottom-10 right-1/4 h-24 w-24 rounded-3xl bg-[#2563EB]/15 blur-lg"
         animate={{ rotate: [0, 8, 0], y: [0, 12, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />

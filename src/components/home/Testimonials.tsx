@@ -28,10 +28,10 @@ export function Testimonials() {
           </div>
         </FadeIn>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div data-sticky-hide className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <FadeIn key={item.name} delay={index * 0.08}>
-              <blockquote className="flex h-full flex-col rounded-2xl border border-ink/8 bg-white p-6 shadow-soft">
+              <blockquote className="card-surface flex h-full flex-col p-6">
                 {item.editable ? (
                   <span className="mb-3 w-fit rounded-md bg-sand-warm px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                     Editable placeholder
@@ -40,7 +40,7 @@ export function Testimonials() {
                 <p className="flex-1 text-sm leading-relaxed text-ink">
                   &ldquo;{item.quote}&rdquo;
                 </p>
-                <footer className="mt-5 border-t border-ink/8 pt-4">
+                <footer className="mt-5 border-t border-ink/10 pt-4">
                   <cite className="not-italic">
                     <span className="block text-sm font-semibold text-ink">
                       {item.name}
