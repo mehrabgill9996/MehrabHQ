@@ -8,6 +8,12 @@ import { budgetRanges, projectTypes } from "@/lib/content";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+// Web3Forms access keys are meant to be public (client-side). Env is preferred;
+// fallback keeps the quote form working if .env.local wasn't picked up yet.
+const WEB3FORMS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
+  "c1fe4bae-71a0-474e-9c53-55fd0d6528b3";
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,22 +37,13 @@ export function ContactForm() {
 
     // Honeypot — bots fill this; real users leave it empty
     if (String(formData.get("botcheck") || "").trim()) {
-      setStatus("success");
       form.reset();
-      return;
-    }
-
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (!accessKey) {
-      setStatus("error");
-      setErrorMessage(
-        "Form is not configured yet. Add NEXT_PUBLIC_WEB3FORMS_KEY to your .env.local file."
-      );
+      setStatus("success");
       return;
     }
 
     const payload = {
-      access_key: accessKey,
+      access_key: WEB3FORMS_KEY,
       name: formData.get("name"),
       email: formData.get("email"),
       business_name: formData.get("business_name") || "N/A",
