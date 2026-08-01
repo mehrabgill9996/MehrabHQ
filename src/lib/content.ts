@@ -157,6 +157,52 @@ export const pricingTiers = [
 export const pricingNote =
   "Final quote depends on your needs — get a free estimate with no obligation.";
 
+export const portfolioCaseStudies = [
+  {
+    id: "tiling-contractor",
+    domain: "tiling-contractor.com",
+    category: "Bathroom & Tiling Contractor",
+    headline: "Custom Landing Page for Local Contractor",
+    description:
+      "Designed and built to turn local traffic into high-value quote requests. Features clean service breakdowns, trust badges, clear CTAs, and instant form notifications via Web3Forms.",
+    tech: ["Next.js", "Tailwind CSS", "Web3Forms", "Sanity CMS"],
+    liveUrl: undefined as string | undefined,
+    image: "/images/projects/FULLPAGERSHOTT.jpg",
+    imageAlt:
+      "Full-page screenshot of a bathroom and tiling contractor landing page",
+    imageWidth: 2549,
+    imageHeight: 16753,
+  },
+  {
+    id: "kingpin-auto-sales",
+    domain: "kingpinautosales.com",
+    category: "Dealership Website",
+    headline: "Full Dealership Site for Kingpin Auto Sales",
+    description:
+      "A premium Regina dealership experience with a dark hero, inventory listings, recently sold vehicles, and clear CTAs built to convert shoppers into leads.",
+    tech: ["Next.js", "Tailwind CSS", "Sanity CMS", "Framer Motion"],
+    liveUrl: undefined as string | undefined,
+    image: "/images/projects/kingpin-home.png",
+    imageAlt: "Kingpin Auto Sales website homepage screenshot",
+    imageWidth: 1400,
+    imageHeight: 900,
+  },
+  {
+    id: "tiles-with-gill",
+    domain: "tileswithgill.com",
+    category: "Trade Business Website",
+    headline: "Lead-Gen Website for Tiles With Gill",
+    description:
+      "A clean contractor site for Brampton & the GTA with strong quote CTAs, service-area mapping, and trust sections that help homeowners book with confidence.",
+    tech: ["Next.js", "Tailwind CSS", "Web3Forms", "Google Maps"],
+    liveUrl: undefined as string | undefined,
+    image: "/images/projects/tiles-home.png",
+    imageAlt: "Tiles With Gill website homepage screenshot",
+    imageWidth: 1400,
+    imageHeight: 900,
+  },
+];
+
 export const featuredProjects = [
   {
     title: "Kingpin Auto Sales",

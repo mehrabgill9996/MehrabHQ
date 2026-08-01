@@ -1,8 +1,8 @@
 import { Benefits } from "@/components/home/Benefits";
 import { FAQ } from "@/components/home/FAQ";
-import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Hero } from "@/components/home/Hero";
+import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { Pricing } from "@/components/home/Pricing";
 import { Process } from "@/components/home/Process";
 import { Services } from "@/components/home/Services";
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Services />
-      <FeaturedWork />
+      <PortfolioSection />
       <Benefits />
       <Process />
       <Pricing />
