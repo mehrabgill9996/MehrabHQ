@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { BrandLogo } from "./BrandLogo";
 import { Button } from "./Button";
-import { navLinks, siteConfig } from "@/lib/content";
+import { navLinks } from "@/lib/content";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,13 +35,7 @@ export function Navbar() {
       }`}
     >
       <div className="container-page flex items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="text-xl font-semibold tracking-tight text-ink"
-          aria-label={`${siteConfig.name} home`}
-        >
-          {siteConfig.name}
-        </Link>
+        <BrandLogo />
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {navLinks.map((link) => (

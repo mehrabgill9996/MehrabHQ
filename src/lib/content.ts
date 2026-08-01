@@ -9,6 +9,7 @@ export const siteConfig = {
   phoneTel: "tel:+13063165228",
   whatsappUrl: "https://wa.me/13063165228",
   linkedIn: "https://linkedin.com/in/mehrab", // TODO: replace with real profile URL
+  logo: "/images/MHQ.png",
   acceptingProjects: true,
 };
 
@@ -182,10 +183,10 @@ export const portfolioCaseStudies = [
       "A premium Regina dealership experience with a dark hero, inventory listings, recently sold vehicles, and clear CTAs built to convert shoppers into leads.",
     tech: ["Next.js", "Tailwind CSS", "Sanity CMS", "Framer Motion"],
     liveUrl: undefined as string | undefined,
-    image: "/images/projects/kingpin-home.png",
-    imageAlt: "Kingpin Auto Sales website homepage screenshot",
-    imageWidth: 1400,
-    imageHeight: 900,
+    image: "/images/projects/kingpin1.jpg",
+    imageAlt: "Full-page screenshot of the Kingpin Auto Sales website",
+    imageWidth: 2549,
+    imageHeight: 7767,
   },
 ];
 

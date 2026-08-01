@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { ExternalLink, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
+import { BrandLogo } from "./BrandLogo";
 import { navLinks, siteConfig } from "@/lib/content";
 
 export function Footer() {
@@ -9,9 +10,7 @@ export function Footer() {
     <footer className="border-t border-ink/8 bg-ink text-white">
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <Link href="/" className="text-xl font-semibold tracking-tight">
-            {siteConfig.name}
-          </Link>
+          <BrandLogo variant="dark" />
           <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
             {siteConfig.tagline}
           </p>

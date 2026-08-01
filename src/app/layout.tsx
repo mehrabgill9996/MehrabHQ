@@ -48,7 +48,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/images/MHQ.png", type: "image/png", sizes: "319x129" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/images/MHQ.png" }],
   },
 };
 
