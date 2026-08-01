@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/Button";
@@ -12,7 +12,7 @@ export function PortfolioSection() {
     <section id="work" className="scroll-mt-24 py-20 pb-32 lg:py-24 lg:pb-36">
       <div className="container-page">
         <FadeIn>
-          <div className="mb-12 flex max-w-2xl flex-col items-center gap-3 text-center mx-auto">
+          <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center gap-3 text-center">
             <span className="inline-flex rounded-full bg-[#DBEAFE] px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#1D4ED8]">
               Selected Work
             </span>
@@ -29,7 +29,7 @@ export function PortfolioSection() {
         <div className="flex flex-col gap-10">
           {portfolioCaseStudies.map((project, index) => (
             <FadeIn key={project.id} delay={index * 0.06}>
-              <CaseStudyCard project={project} priority={index === 0} />
+              <CaseStudyCard project={project} />
             </FadeIn>
           ))}
         </div>
@@ -40,13 +40,7 @@ export function PortfolioSection() {
 
 type CaseStudy = (typeof portfolioCaseStudies)[number];
 
-function CaseStudyCard({
-  project,
-  priority,
-}: {
-  project: CaseStudy;
-  priority?: boolean;
-}) {
+function CaseStudyCard({ project }: { project: CaseStudy }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -70,54 +64,41 @@ function CaseStudyCard({
         className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
       >
         <div className="grid gap-8 p-6 lg:grid-cols-12 lg:gap-8 lg:p-8">
-          {/* Browser mockup + preview */}
           <div className="lg:col-span-7">
             <div className="overflow-hidden rounded-xl border border-ink/10 bg-sand shadow-soft">
               <div className="flex items-center gap-2 border-b border-ink/10 bg-sand-warm px-3 py-2.5">
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-[#EF4444]"
-                  aria-hidden
-                />
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-[#F59E0B]"
-                  aria-hidden
-                />
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-[#10B981]"
-                  aria-hidden
-                />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#EF4444]" aria-hidden />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#F59E0B]" aria-hidden />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#10B981]" aria-hidden />
                 <div className="ml-2 flex-1 truncate rounded-md bg-white px-3 py-1 text-center text-[11px] text-ink-muted">
                   {project.domain}
                 </div>
               </div>
 
-              {/* Desktop: hover scroll preview */}
-              <div className="group relative hidden h-80 w-full cursor-pointer overflow-hidden sm:h-96 md:block">
-                <Image
+              <div className="hidden md:block">
+                <HoverScrollPreview
                   src={project.image}
                   alt={project.imageAlt}
                   width={project.imageWidth}
                   height={project.imageHeight}
-                  priority={priority}
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="h-auto w-full origin-top object-cover object-top transition-transform duration-[3000ms] ease-in-out will-change-transform group-hover:-translate-y-[calc(100%-24rem)]"
                 />
               </div>
 
-              {/* Mobile: tap to expand */}
               <button
                 type="button"
-                className="relative block h-80 w-full overflow-hidden sm:h-96 md:hidden"
+                className="relative block h-80 w-full overflow-hidden md:hidden"
+                style={{ backgroundColor: "#F5F2EA" }}
                 onClick={() => setIsModalOpen(true)}
                 aria-label={`View full page preview of ${project.headline}`}
               >
                 <Image
                   src={project.image}
-                  alt={project.imageAlt}
+                  alt=""
                   width={project.imageWidth}
                   height={project.imageHeight}
-                  sizes="100vw"
-                  className="w-full object-cover object-top"
+                  unoptimized
+                  className="block h-auto w-full"
+                  aria-hidden
                 />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent px-4 pb-4 pt-10 text-center text-sm font-semibold text-white">
                   Tap to view full page
@@ -126,7 +107,6 @@ function CaseStudyCard({
             </div>
           </div>
 
-          {/* Project details */}
           <div className="flex flex-col justify-center lg:col-span-5">
             <span className="inline-flex w-fit rounded-full border border-[#2563EB]/20 bg-[#DBEAFE] px-3 py-1 text-xs font-semibold text-[#1D4ED8]">
               {project.category}
@@ -174,7 +154,6 @@ function CaseStudyCard({
         </div>
       </article>
 
-      {/* Mobile full-page modal */}
       {isModalOpen ? (
         <div
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden"
@@ -205,6 +184,7 @@ function CaseStudyCard({
                 alt={project.imageAlt}
                 width={project.imageWidth}
                 height={project.imageHeight}
+                unoptimized
                 sizes="100vw"
                 className="h-auto w-full"
               />
@@ -213,5 +193,76 @@ function CaseStudyCard({
         </div>
       ) : null}
     </>
+  );
+}
+
+/** Native overflow scroll — no CSS transform/bg-position, so no white halo */
+function HoverScrollPreview({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  function animateScroll(toBottom: boolean) {
+    const el = ref.current;
+    if (!el) return;
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+
+    const start = el.scrollTop;
+    const end = toBottom ? el.scrollHeight - el.clientHeight : 0;
+    const distance = end - start;
+    if (Math.abs(distance) < 1) return;
+
+    const duration = 16000;
+    const t0 = performance.now();
+
+    const easeInOutCubic = (x: number) =>
+      x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - t0) / duration);
+      el.scrollTop = start + distance * easeInOutCubic(t);
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        rafRef.current = null;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+  }
+
+  return (
+    <div
+      ref={ref}
+      className="portfolio-scroll-preview h-80 w-full overflow-x-hidden overflow-y-auto sm:h-96"
+      style={{ backgroundColor: "#F5F2EA" }}
+      onMouseEnter={() => animateScroll(true)}
+      onMouseLeave={() => animateScroll(false)}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        unoptimized
+        draggable={false}
+        className="pointer-events-none block h-auto w-full select-none"
+      />
+    </div>
   );
 }

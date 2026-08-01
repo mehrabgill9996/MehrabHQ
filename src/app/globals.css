@@ -37,3 +37,12 @@ body {
   outline: 2px solid #2563eb;
   outline-offset: 3px;
 }
+
+/* Hide scrollbar on portfolio hover-scroll previews */
+.portfolio-scroll-preview {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.portfolio-scroll-preview::-webkit-scrollbar {
+  display: none;
+}
