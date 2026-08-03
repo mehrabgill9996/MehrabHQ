@@ -86,36 +86,35 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.RESEND_API_KEY?.trim();
-    const notifyEmail = process.env.NOTIFY_EMAIL?.trim();
+    // Lead alerts go to Gmail — Namecheap MX on support@ interferes with inbound
+    const notifyEmail =
+      process.env.NOTIFY_EMAIL?.trim() || "mehrabhqofficial@gmail.com";
     const fromEmail =
       process.env.FROM_EMAIL?.trim() || "support@mehrabhq.com";
 
-    if (!apiKey || !notifyEmail) {
-      console.error("[contact] Missing env:", {
-        hasApiKey: Boolean(apiKey),
-        hasNotifyEmail: Boolean(notifyEmail),
-      });
+    if (!apiKey) {
+      console.error("[contact] Missing RESEND_API_KEY");
       return NextResponse.json(
         {
           success: false,
           message:
-            "Email service is not configured yet. Set RESEND_API_KEY and NOTIFY_EMAIL, then restart the server.",
+            "Email service is not configured yet. Set RESEND_API_KEY, then restart the server.",
         },
         { status: 500 },
       );
     }
 
     const resend = new Resend(apiKey);
-    const from = `Mehrab from MehrabHQ <${fromEmail}>`;
+    const from = `MehrabHQ <${fromEmail}>`;
 
     let notifyOk = false;
     let thankYouOk = false;
     const errors: string[] = [];
 
     try {
-      const { error } = await resend.emails.send({
+      const { data: notifyResult, error } = await resend.emails.send({
         from,
-        to: notifyEmail,
+        to: [notifyEmail],
         replyTo: data.email,
         subject: `New Quote Request from ${data.name}`,
         html: leadNotificationHtml(data),
@@ -125,6 +124,7 @@ export async function POST(request: Request) {
         console.error("[contact] Lead notification failed:", error);
       } else {
         notifyOk = true;
+        console.log("[contact] Lead notification sent:", notifyResult?.id);
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Unknown notify error";
@@ -133,9 +133,9 @@ export async function POST(request: Request) {
     }
 
     try {
-      const { error } = await resend.emails.send({
+      const { data: thankYouResult, error } = await resend.emails.send({
         from,
-        to: data.email,
+        to: [data.email],
         subject: "Thanks for reaching out to MehrabHQ!",
         html: thankYouHtml(data),
       });
@@ -144,6 +144,7 @@ export async function POST(request: Request) {
         console.error("[contact] Thank-you email failed:", error);
       } else {
         thankYouOk = true;
+        console.log("[contact] Thank-you email sent:", thankYouResult?.id);
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Unknown thank-you error";
@@ -155,8 +156,8 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Could not send email right now. Please try again or email us directly.",
-          errors,
+          message:
+            "Could not send email right now. Please try again or email us directly.",
         },
         { status: 502 },
       );
@@ -164,12 +165,7 @@ export async function POST(request: Request) {
 
     recentSubmissions.set(fingerprint, Date.now());
 
-    return NextResponse.json({
-      success: true,
-      notified: notifyOk,
-      thanked: thankYouOk,
-      ...(errors.length ? { warnings: errors } : {}),
-    });
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] Unexpected error:", err);
     return NextResponse.json(
