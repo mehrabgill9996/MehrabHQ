@@ -8,12 +8,6 @@ import { budgetRanges, projectTypes } from "@/lib/content";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-// Web3Forms access keys are meant to be public (client-side). Env is preferred;
-// fallback keeps the quote form working if .env.local wasn't picked up yet.
-const WEB3FORMS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
-  "c1fe4bae-71a0-474e-9c53-55fd0d6528b3";
-
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,33 +23,26 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "loading") return;
+
     setStatus("loading");
     setErrorMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    // Honeypot — bots fill this; real users leave it empty
-    if (String(formData.get("botcheck") || "").trim()) {
-      form.reset();
-      setStatus("success");
-      return;
-    }
-
     const payload = {
-      access_key: WEB3FORMS_KEY,
-      name: formData.get("name"),
-      email: formData.get("email"),
-      business_name: formData.get("business_name") || "N/A",
-      project_type: formData.get("project_type"),
-      budget: formData.get("budget") || "Not specified",
-      message: formData.get("message"),
-      subject: "New MehrabHQ quote request",
-      from_name: "MehrabHQ Website",
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      business_name: String(formData.get("business_name") || ""),
+      project_type: String(formData.get("project_type") || ""),
+      budget: String(formData.get("budget") || ""),
+      message: String(formData.get("message") || ""),
+      botcheck: String(formData.get("botcheck") || ""),
     };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,9 +51,11 @@ export function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.success) {
-        throw new Error(result.message || "Something went wrong. Please try again.");
+        throw new Error(
+          result.message || "Something went wrong. Please try again.",
+        );
       }
 
       form.reset();
@@ -76,7 +65,7 @@ export function ContactForm() {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "Something went wrong. Please try again."
+          : "Something went wrong. Please try again.",
       );
     }
   }
@@ -250,7 +239,8 @@ export function ContactForm() {
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                 Your message was sent successfully. I&apos;ll get back to you
-                soon with next steps for your quote.
+                soon with next steps for your quote — and you should get a
+                confirmation email shortly.
               </p>
               <div className="mt-7">
                 <Button type="button" onClick={closeThankYou} className="w-full sm:w-auto">

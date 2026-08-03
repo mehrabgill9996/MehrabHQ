@@ -64,17 +64,20 @@ export default function PrivacyPage() {
                 Form delivery
               </h2>
               <p>
-                Quote form submissions are processed by{" "}
+                Quote form submissions are processed on our server and delivered
+                by{" "}
                 <a
-                  href="https://web3forms.com"
+                  href="https://resend.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#2563EB] hover:underline"
                 >
-                  Web3Forms
-                </a>{" "}
-                so we can receive your message by email. Their handling of data
-                is governed by their own privacy policy.
+                  Resend
+                </a>
+                {" "}
+                so we can email you a confirmation and notify MehrabHQ about your
+                inquiry. Their handling of data is governed by their own privacy
+                policy.
               </p>
             </section>
 
