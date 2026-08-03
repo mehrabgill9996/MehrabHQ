@@ -70,9 +70,11 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
-  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
-    : undefined,
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
+      "LkkAEaJ5dIX3Lj_EEoSFxMZsZiTDe1tA_xqKw6p001g",
+  },
 };
 
 export const viewport: Viewport = {
