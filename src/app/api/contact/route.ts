@@ -85,14 +85,22 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const notifyEmail = process.env.NOTIFY_EMAIL;
-    const fromEmail = process.env.FROM_EMAIL || "support@mehrabhq.com";
+    const apiKey = process.env.RESEND_API_KEY?.trim();
+    const notifyEmail = process.env.NOTIFY_EMAIL?.trim();
+    const fromEmail =
+      process.env.FROM_EMAIL?.trim() || "support@mehrabhq.com";
 
     if (!apiKey || !notifyEmail) {
-      console.error("[contact] Missing RESEND_API_KEY or NOTIFY_EMAIL");
+      console.error("[contact] Missing env:", {
+        hasApiKey: Boolean(apiKey),
+        hasNotifyEmail: Boolean(notifyEmail),
+      });
       return NextResponse.json(
-        { success: false, message: "Email service is not configured yet." },
+        {
+          success: false,
+          message:
+            "Email service is not configured yet. Set RESEND_API_KEY and NOTIFY_EMAIL, then restart the server.",
+        },
         { status: 500 },
       );
     }
