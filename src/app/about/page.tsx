@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/Button";
 import { FadeIn } from "@/components/FadeIn";
+import { JsonLd } from "@/components/JsonLd";
 import { SectionHeading } from "@/components/SectionHeading";
 import { siteConfig, techStack } from "@/lib/content";
+import { absoluteUrl, personJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Meet Mehrab — the designer and developer behind MehrabHQ, helping Ontario small businesses get modern, conversion-focused websites.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: `About | ${siteConfig.name}`,
+    description:
+      "Meet Mehrab — the designer and developer behind MehrabHQ, helping Ontario small businesses get modern, conversion-focused websites.",
+    url: absoluteUrl("/about"),
+    type: "website",
+  },
 };
 
 const MAP_EMBED_SRC =
@@ -17,6 +29,7 @@ const MAP_EMBED_SRC =
 export default function AboutPage() {
   return (
     <div className="pb-20">
+      <JsonLd data={personJsonLd()} />
       <section
         className="py-16 lg:py-20"
         style={{

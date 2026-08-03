@@ -3,11 +3,22 @@ import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn } from "@/components/FadeIn";
 import { siteConfig } from "@/lib/content";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Request a free quote from MehrabHQ. Tell us about your project and get a clear estimate for your custom website.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: `Contact | ${siteConfig.name}`,
+    description:
+      "Request a free quote from MehrabHQ. Tell us about your project and get a clear estimate for your custom website.",
+    url: absoluteUrl("/contact"),
+    type: "website",
+  },
 };
 
 export default function ContactPage() {

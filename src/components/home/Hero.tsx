@@ -48,7 +48,7 @@ export function Hero() {
           transition={{ duration: 0.4, delay: 0.12 }}
           className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted"
         >
-          Fast turnaround, fair pricing, and a site built for your small
+          Fast turnaround, fair pricing, and a site built for your Ontario small
           business — whether you need a simple landing page or full e-commerce
           with Stripe.
         </motion.p>

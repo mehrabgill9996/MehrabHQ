@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
 import { StickyQuoteButton } from "@/components/StickyQuoteButton";
 import { siteConfig } from "@/lib/content";
+import { organizationJsonLd, SITE_URL, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -19,41 +22,57 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mehrabhq.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: `${siteConfig.name} | Custom Websites for Small Businesses`,
+    default: `${siteConfig.name} | Custom Websites for Ontario Small Businesses`,
     template: `%s | ${siteConfig.name}`,
   },
   description:
     "MehrabHQ builds custom websites for small businesses in Ontario — landing pages, business sites, and e-commerce with fast turnaround and fair pricing.",
+  keywords: [
+    "Ontario web design",
+    "small business website",
+    "custom website developer",
+    "landing page design",
+    "e-commerce website Ontario",
+    "MehrabHQ",
+  ],
+  authors: [{ name: siteConfig.owner, url: SITE_URL }],
+  creator: siteConfig.owner,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: `${siteConfig.name} | Custom Websites for Small Businesses`,
+    title: `${siteConfig.name} | Custom Websites for Ontario Small Businesses`,
     description:
       "Custom websites that turn visitors into customers. Fast turnaround, transparent pricing, direct communication.",
-    url: "https://mehrabhq.com",
+    url: SITE_URL,
     siteName: siteConfig.name,
     locale: "en_CA",
     type: "website",
-    // Placeholder OG image — replace public/og.svg with a designed PNG later
-    images: [{ url: "/og.svg", width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Custom Websites for Small Businesses`,
+    title: `${siteConfig.name} | Custom Websites for Ontario Small Businesses`,
     description:
       "Custom websites that turn visitors into customers. Fast turnaround, transparent pricing.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
-  icons: {
-    icon: [
-      { url: "/images/MHQ.png", type: "image/png", sizes: "319x129" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/images/MHQ.png" }],
-  },
+  category: "technology",
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
 };
 
 export const viewport: Viewport = {
@@ -68,14 +87,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-CA">
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-sand font-sans text-ink antialiased`}
       >
-        {/*
-          Analytics placeholder — drop Google Analytics / Plausible here later:
-          <Script src="..." strategy="afterInteractive" />
-        */}
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <Analytics />
         <Navbar />
         <main className="pb-28 md:pb-32">{children}</main>
         <Footer />

@@ -34,6 +34,8 @@ export function FAQ() {
                     type="button"
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${index}`}
+                    id={`faq-button-${index}`}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
                     <span className="font-medium text-ink">{faq.question}</span>
@@ -45,9 +47,18 @@ export function FAQ() {
                       aria-hidden
                     />
                   </button>
+                  {/* Keep closed answers in the DOM (sr-only) for crawlers */}
+                  {!isOpen ? (
+                    <p id={`faq-panel-${index}`} className="sr-only">
+                      {faq.answer}
+                    </p>
+                  ) : null}
                   <AnimatePresence initial={false}>
                     {isOpen ? (
                       <motion.div
+                        id={`faq-panel-${index}`}
+                        role="region"
+                        aria-labelledby={`faq-button-${index}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
