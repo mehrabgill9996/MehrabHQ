@@ -175,7 +175,7 @@ export const processSteps = [
 export const pricingTiers = [
   {
     name: "Starter Landing Page",
-    price: "$799",
+    price: "$599",
     description: "A focused one-page site to get you online and collecting leads.",
     features: [
       "Custom design",
@@ -186,7 +186,7 @@ export const pricingTiers = [
   },
   {
     name: "Business Website",
-    price: "$1,499",
+    price: "$1,099",
     description: "A full multi-page site that presents your business with confidence.",
     features: [
       "Up to 5 pages",
