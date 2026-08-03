@@ -7,7 +7,6 @@ import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { Pricing } from "@/components/home/Pricing";
 import { Process } from "@/components/home/Process";
 import { Services } from "@/components/home/Services";
-import { Testimonials } from "@/components/home/Testimonials";
 import { TrustBar } from "@/components/home/TrustBar";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/lib/content";
@@ -42,7 +41,6 @@ export default function HomePage() {
       <Benefits />
       <Process />
       <Pricing />
-      <Testimonials />
       <FAQ />
       <FinalCTA />
     </>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Globe,
   LayoutTemplate,
@@ -38,18 +39,26 @@ export function Services() {
           {services.map((service, index) => {
             const Icon = icons[service.icon];
             return (
-              <FadeIn key={service.title} delay={index * 0.06}>
-                <Card className="h-full" data-sticky-hide>
-                  <div className="mb-4 inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
-                    <Icon size={22} aria-hidden />
-                  </div>
-                  <h3 className="text-lg font-semibold text-ink">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 pb-2 text-sm leading-relaxed text-ink-muted">
-                    {service.description}
-                  </p>
-                </Card>
+              <FadeIn key={service.slug} delay={index * 0.06}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
+                >
+                  <Card className="flex h-full flex-col transition-shadow hover:shadow-lift" data-sticky-hide>
+                    <div className="mb-4 inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
+                      <Icon size={22} aria-hidden />
+                    </div>
+                    <h3 className="text-lg font-semibold text-ink">
+                      {service.title}
+                    </h3>
+                    <p className="mt-2 pb-2 text-sm leading-relaxed text-ink-muted">
+                      {service.description}
+                    </p>
+                    <span className="mt-auto text-sm font-medium text-[#2563EB]">
+                      Learn more →
+                    </span>
+                  </Card>
+                </Link>
               </FadeIn>
             );
           })}

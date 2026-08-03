@@ -96,7 +96,7 @@ function CaseStudyCard({ project }: { project: CaseStudy }) {
                   alt=""
                   width={project.imageWidth}
                   height={project.imageHeight}
-                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 60vw"
                   className="block h-auto w-full"
                   aria-hidden
                 />
@@ -144,11 +144,10 @@ function CaseStudyCard({ project }: { project: CaseStudy }) {
                   View Live Demo
                   <ExternalLink size={14} aria-hidden />
                 </a>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 px-2 py-2 text-sm font-medium text-ink-muted">
-                  Live demo coming soon
-                </span>
-              )}
+              ) : null}
+              <Button href={`/work/${project.id}`} variant="ghost" size="md">
+                View case study
+              </Button>
             </div>
           </div>
         </div>
@@ -184,7 +183,6 @@ function CaseStudyCard({ project }: { project: CaseStudy }) {
                 alt={project.imageAlt}
                 width={project.imageWidth}
                 height={project.imageHeight}
-                unoptimized
                 sizes="100vw"
                 className="h-auto w-full"
               />
@@ -259,7 +257,7 @@ function HoverScrollPreview({
         alt={alt}
         width={width}
         height={height}
-        unoptimized
+        sizes="(max-width: 1024px) 100vw, 60vw"
         draggable={false}
         className="pointer-events-none block h-auto w-full select-none"
       />

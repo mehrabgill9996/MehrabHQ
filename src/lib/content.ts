@@ -31,39 +31,93 @@ export const trustSignals = [
 
 export const services = [
   {
+    slug: "landing-pages",
     title: "Landing Pages",
     description:
       "Focused one-page sites that introduce your business and turn visitors into leads.",
+    longDescription:
+      "A single, conversion-focused page that presents your offer clearly — strong headline, trust signals, services overview, and a quote form that actually gets used. Ideal when you need to go live fast and start capturing inquiries.",
+    highlights: [
+      "Clear hero and call-to-action",
+      "Mobile-first layout",
+      "Contact / quote form",
+      "Basic SEO and analytics-ready",
+    ],
     icon: "layout",
   },
   {
+    slug: "business-websites",
     title: "Business Websites",
     description:
       "Multi-page sites with clear services, about, and contact — built to look sharp on every device.",
+    longDescription:
+      "A full small-business site with the pages you need to look established online: home, services, about, and contact. Designed to be easy to navigate, fast on phones, and ready for Google.",
+    highlights: [
+      "Up to multi-page structure",
+      "Custom design for your brand",
+      "Contact form and email setup",
+      "SEO foundations included",
+    ],
     icon: "globe",
   },
   {
+    slug: "e-commerce",
     title: "E-Commerce",
     description:
       "Product listings and Stripe checkout so you can sell online without the headache.",
+    longDescription:
+      "Sell products online with a clean catalog and secure Stripe checkout. Built so orders notify you reliably and customers can buy without friction — without a bloated platform you don’t need.",
+    highlights: [
+      "Product listings",
+      "Stripe checkout",
+      "Order notifications",
+      "Admin-friendly updates",
+    ],
     icon: "shopping",
   },
   {
+    slug: "cms-integration",
     title: "CMS Integration",
     description:
       "Sanity-powered content so you can update text and images yourself — no coding required.",
+    longDescription:
+      "Connect your site to Sanity so you can edit copy, images, and listings yourself. No waiting on a developer for every small change — and no messy WordPress plugins.",
+    highlights: [
+      "Sanity CMS setup",
+      "Editable pages and fields",
+      "Image management",
+      "Training so you’re comfortable updating",
+    ],
     icon: "edit",
   },
   {
+    slug: "contact-forms-email",
     title: "Contact Forms & Email",
     description:
       "Reliable forms with Web3Forms and Resend so inquiries land where you need them.",
+    longDescription:
+      "Forms that deliver — quote requests, contact messages, and notifications set up so leads don’t disappear into spam. Built with Web3Forms and Resend for dependable delivery.",
+    highlights: [
+      "Custom form fields",
+      "Instant email notifications",
+      "Spam protection",
+      "Optional CRM / inbox routing",
+    ],
     icon: "mail",
   },
   {
+    slug: "website-redesigns",
     title: "Website Redesigns",
     description:
       "Modernize an outdated site into something fast, mobile-friendly, and conversion-ready.",
+    longDescription:
+      "Replace an outdated or DIY site with a modern rebuild that loads fast, looks sharp on mobile, and guides visitors toward calling, booking, or buying.",
+    highlights: [
+      "UX and content cleanup",
+      "Modern tech stack",
+      "Mobile performance focus",
+      "Migration help for domain and hosting",
+    ],
     icon: "refresh",
   },
 ] as const;
@@ -171,8 +225,8 @@ export const portfolioCaseStudies = [
     image: "/images/projects/FULLPAGERSHOT1.jpg",
     imageAlt:
       "Full-page screenshot of a bathroom and tiling contractor landing page",
-    imageWidth: 2549,
-    imageHeight: 16753,
+    imageWidth: 1400,
+    imageHeight: 9201,
   },
   {
     id: "kingpin-auto-sales",
@@ -185,8 +239,8 @@ export const portfolioCaseStudies = [
     liveUrl: undefined as string | undefined,
     image: "/images/projects/kingpin1.jpg",
     imageAlt: "Full-page screenshot of the Kingpin Auto Sales website",
-    imageWidth: 2549,
-    imageHeight: 7767,
+    imageWidth: 1400,
+    imageHeight: 4266,
   },
 ];
 

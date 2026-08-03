@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 
@@ -33,10 +34,14 @@ function isOverlappingCta(el: Element) {
 }
 
 export function StickyQuoteButton() {
+  const pathname = usePathname();
   const [pastHero, setPastHero] = useState(false);
   const [overCards, setOverCards] = useState(false);
+  const hideOnPage = pathname === "/contact";
 
   useEffect(() => {
+    if (hideOnPage) return;
+
     const update = () => {
       setPastHero(window.scrollY > 420);
 
@@ -59,9 +64,9 @@ export function StickyQuoteButton() {
       window.removeEventListener("resize", update);
       window.clearTimeout(t);
     };
-  }, []);
+  }, [hideOnPage]);
 
-  const visible = pastHero && !overCards;
+  const visible = !hideOnPage && pastHero && !overCards;
 
   return (
     <AnimatePresence>

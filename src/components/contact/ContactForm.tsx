@@ -88,7 +88,7 @@ export function ContactForm() {
   return (
     <>
       <div className="relative rounded-2xl border border-ink/8 bg-white p-6 shadow-soft sm:p-8">
-        <form onSubmit={onSubmit} className="space-y-5" noValidate>
+        <form onSubmit={onSubmit} className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Name" htmlFor="name" required>
               <input
