@@ -70,6 +70,10 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
   verification: {
     google:
       process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
