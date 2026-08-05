@@ -1,4 +1,4 @@
-import { ExternalLink, Mail, MapPin } from "lucide-react";
+import { ExternalLink, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import { BrandLogo } from "./BrandLogo";
 import { navLinks, siteConfig } from "@/lib/content";
@@ -54,6 +54,26 @@ export function Footer() {
               >
                 <Mail size={16} aria-hidden />
                 {siteConfig.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={siteConfig.phoneTel}
+                className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <Phone size={16} aria-hidden />
+                {siteConfig.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <MessageCircle size={16} aria-hidden />
+                WhatsApp
               </a>
             </li>
             <li>

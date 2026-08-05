@@ -59,7 +59,7 @@ export default function ContactPage() {
                 <span className="inline-flex rounded-xl bg-[#DBEAFE] p-2.5 text-[#1D4ED8]">
                   <MessageCircle size={18} aria-hidden />
                 </span>
-                WhatsApp
+                WhatsApp — Chat Now
               </a>
             </li>
             <li>
