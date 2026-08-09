@@ -89,15 +89,14 @@ export default function CaseStudyPage({ params }: Props) {
               <span className="h-2.5 w-2.5 rounded-full bg-[#EF4444]" aria-hidden />
               <span className="h-2.5 w-2.5 rounded-full bg-[#F59E0B]" aria-hidden />
               <span className="h-2.5 w-2.5 rounded-full bg-[#10B981]" aria-hidden />
-              <div className="ml-2 flex-1 truncate rounded-md bg-white px-3 py-1 text-center text-[11px] text-ink-muted">
-                {project.domain}
-              </div>
+              <div className="ml-2 h-5 flex-1 rounded-md bg-white" aria-hidden />
             </div>
             <Image
               src={project.image}
               alt={project.imageAlt}
               width={project.imageWidth}
               height={project.imageHeight}
+              unoptimized
               sizes="100vw"
               className="h-auto w-full"
               priority

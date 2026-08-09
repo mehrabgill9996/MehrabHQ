@@ -214,6 +214,21 @@ export const pricingNote =
 
 export const portfolioCaseStudies = [
   {
+    id: "mr-heating-cooling",
+    domain: "mrheatingcooling.ca",
+    category: "Heating & Cooling",
+    headline: "Lead-Gen Site for Mr. Heating & Cooling",
+    description:
+      "A conversion-focused HVAC landing page with service grids, trust-building standards, quote form, testimonials, and FAQ — built to turn homeowners into booked jobs.",
+    tech: ["Next.js", "Tailwind CSS", "Web3Forms", "Resend"],
+    liveUrl: undefined as string | undefined,
+    image: "/images/projects/hvac-landing-v3.jpg",
+    imageAlt:
+      "Full-page screenshot of the Mr. Heating & Cooling website",
+    imageWidth: 1600,
+    imageHeight: 5791,
+  },
+  {
     id: "tiling-contractor",
     domain: "tiling-contractor.com",
     category: "Bathroom & Tiling Contractor",
