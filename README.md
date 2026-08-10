@@ -29,14 +29,14 @@ Quote requests POST to `/api/contact`, which sends:
 
 ```env
 RESEND_API_KEY=re_xxxxxxxx
-NOTIFY_EMAIL=mehrabhqofficial@gmail.com
+NOTIFY_EMAIL=support@mehrabhq.com
 FROM_EMAIL=support@mehrabhq.com
 ```
 
 | Variable | Purpose |
 |----------|---------|
 | `RESEND_API_KEY` | Server-side Resend API key (never expose to the browser) |
-| `NOTIFY_EMAIL` | Where new quote notifications are delivered (use Gmail — `support@` inbound can fail with Namecheap MX redirects) |
+| `NOTIFY_EMAIL` | Where new quote notifications are delivered |
 | `FROM_EMAIL` | Verified sender address (must match your Resend domain) |
 
 4. Restart the dev server after changing env vars.

@@ -86,9 +86,8 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.RESEND_API_KEY?.trim();
-    // Lead alerts go to Gmail — Namecheap MX on support@ interferes with inbound
     const notifyEmail =
-      process.env.NOTIFY_EMAIL?.trim() || "mehrabhqofficial@gmail.com";
+      process.env.NOTIFY_EMAIL?.trim() || "support@mehrabhq.com";
     const fromEmail =
       process.env.FROM_EMAIL?.trim() || "support@mehrabhq.com";
 
@@ -105,6 +104,7 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
+    // From must be a verified Resend domain address
     const from = `MehrabHQ <${fromEmail}>`;
 
     let notifyOk = false;
