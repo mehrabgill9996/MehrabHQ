@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Benefits } from "@/components/home/Benefits";
 import { FAQ } from "@/components/home/FAQ";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { GoogleReviews } from "@/components/home/GoogleReviews";
 import { Hero } from "@/components/home/Hero";
 import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { Pricing } from "@/components/home/Pricing";
@@ -41,6 +42,7 @@ export default function HomePage() {
       <Benefits />
       <Process />
       <Pricing />
+      <GoogleReviews />
       <FAQ />
       <FinalCTA />
     </>
