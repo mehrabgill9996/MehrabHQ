@@ -214,6 +214,21 @@ export const pricingNote =
 
 export const portfolioCaseStudies = [
   {
+    id: "gatesgill-plumbing",
+    domain: "gatesgillplumbing.com",
+    category: "Plumbing",
+    headline: "Lead-Gen Site for Gatesgill Plumbing",
+    description:
+      "A conversion-focused plumbing website for Brampton & the GTA — service grids, trust stats, install quote CTAs, reviews, and FAQ built to turn homeowners into booked jobs.",
+    tech: ["Next.js", "Tailwind CSS", "Web3Forms", "Resend"],
+    liveUrl: undefined as string | undefined,
+    image: "/images/projects/gatesgill-plumbing.jpg",
+    imageAlt:
+      "Full-page screenshot of the Gatesgill Plumbing website",
+    imageWidth: 1600,
+    imageHeight: 5655,
+  },
+  {
     id: "mr-heating-cooling",
     domain: "mrheatingcooling.ca",
     category: "Heating & Cooling",
